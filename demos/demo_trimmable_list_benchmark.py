@@ -179,7 +179,7 @@ class TrimmableListBenchmarkBase:
                 print(f"Randomized block test, round = {round_idx}, target_block = {target_block}")
             round_target_list[round_idx] = target_block
             read_range_start = target_block * BN
-            read_range_stop = target_block * (BN + 1)
+            read_range_stop = read_range_start + BN
             read_idx_list = [
                 random.randint(read_range_start, read_range_stop - 1)
                 for _ in range(raad_count_per_round)
@@ -202,7 +202,7 @@ class TrimmableListBenchmarkBase:
             block_dummy_summary[target_block] += round_dummy_list[round_idx]
         for target_block in range(BR, BA):
             read_range_start = target_block * BN
-            read_range_stop = target_block * (BN + 1)
+            read_range_stop = read_range_start + BN
             total_ns = block_timing_summary[target_block]
             total_ops = block_opcount_summary[target_block]
             dummy_str = str(block_dummy_summary[target_block])
